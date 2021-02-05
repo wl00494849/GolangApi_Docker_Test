@@ -8,6 +8,6 @@ namespace WorkTool.Interface
 {
     public interface ISqlClient
     {
-        public SqlConnection Conn { get; set; }
+        public SqlConnection Conn ();
     }
 }
