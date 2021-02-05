@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTool", "WorkTool\WorkTool.csproj", "{F877FFEB-F3EF-41CA-BA6F-3DEDE832990C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkToolUnit", "WorkToolUnit\WorkToolUnit.csproj", "{3CFF3ADB-DAE8-4D9B-9D1D-40AFA6C99EBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F877FFEB-F3EF-41CA-BA6F-3DEDE832990C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F877FFEB-F3EF-41CA-BA6F-3DEDE832990C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F877FFEB-F3EF-41CA-BA6F-3DEDE832990C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F877FFEB-F3EF-41CA-BA6F-3DEDE832990C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CFF3ADB-DAE8-4D9B-9D1D-40AFA6C99EBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CFF3ADB-DAE8-4D9B-9D1D-40AFA6C99EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CFF3ADB-DAE8-4D9B-9D1D-40AFA6C99EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CFF3ADB-DAE8-4D9B-9D1D-40AFA6C99EBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA8BB48A-234D-4A0C-B021-C2AA68B91F42}
+	EndGlobalSection
+EndGlobal
