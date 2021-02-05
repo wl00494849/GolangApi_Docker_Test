@@ -1,4 +1,4 @@
 /.vscode
-WorkTool/.vs
-WorkTool/WorkTool/obj
-WorkTool/WorkTool/obj/Debug/netcoreapp3.1/WorkTool.assets.cache
+/WorkTool/.vs
+/WorkTool/WorkTool/obj
+/WorkTool/WorkTool/obj/Debug/netcoreapp3.1/WorkTool.assets.cache
