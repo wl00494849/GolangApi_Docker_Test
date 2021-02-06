@@ -9,10 +9,13 @@ namespace WorkTool.Models.DataModel
     {
         public string WorkID { get; set; }
         public string WorkName { get; set; }
+        public string WorkContents { get; set; }
         public string WorkStatus { get; set; }
         public string WorkUrgent { get; set; }
         public string WorkType { get; set; }
-        public string ConSumeTime { get; set; }
+        public string EConsumeTime { get; set; }
+        public string CreateDate { get; set; }
         public string WorkDate { get; set; }
+        public string CompleteDate { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WorkTool.Interface;
 using Microsoft.Extensions.Logging;
 using WorkTool.Models;
 
@@ -11,11 +12,12 @@ namespace WorkTool.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ISqlClient _sqlClient;
+        private readonly WorkToolEntity _db;
+        public HomeController(ISqlClient sqlClient,WorkToolEntity workToolEntity)
         {
-            _logger = logger;
+            _sqlClient = sqlClient;
+            _db = workToolEntity;
         }
 
         public IActionResult Index()

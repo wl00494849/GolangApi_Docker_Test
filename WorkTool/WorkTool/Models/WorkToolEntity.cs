@@ -9,10 +9,10 @@ namespace WorkTool.Models
 {
     public class WorkToolEntity : DbContext
     {
-        public WorkToolEntity(DbContextOptions options) : base(options)
+        public WorkToolEntity(DbContextOptions<WorkToolEntity> options) : base(options)
         {
 
         }
-        DbSet<Work> work { get; set; }
+        public DbSet<Work> Works { get; set; }
     }
 }
