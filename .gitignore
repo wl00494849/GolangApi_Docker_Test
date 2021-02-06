@@ -1,4 +1,4 @@
-/.vscode
-/WorkTool/.vs
-/WorkTool/WorkTool/obj/*
-/WorkTool/WorkTool/bin/*
+.vscode
+WorkTool/.vs
+WorkTool/WorkTool/obj/*
+WorkTool/WorkTool/bin/*
