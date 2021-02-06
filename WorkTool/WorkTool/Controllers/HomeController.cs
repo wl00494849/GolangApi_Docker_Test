@@ -25,7 +25,7 @@ namespace WorkTool.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Work()
         {
             return View();
         }
