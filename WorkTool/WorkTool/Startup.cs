@@ -32,10 +32,11 @@ namespace WorkTool
                 options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
             );
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
+            services.AddSingleton<IUntityFunction,UntityFunction>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,DbContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -45,6 +46,12 @@ namespace WorkTool
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            if(dbContext.Database.GetDbConnection().ConnectionString.Contains("DESKTOP"))
+            {
+                dbContext.Database.Migrate();
+            }
+
             app.UseStaticFiles();
 
             app.UseRouting();
