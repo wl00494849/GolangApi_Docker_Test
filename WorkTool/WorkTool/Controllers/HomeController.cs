@@ -36,7 +36,7 @@ namespace WorkTool.Controllers
         {
             if(ModelState.IsValid)
             {
-                work.WorkID = string.IsNullOrWhiteSpace(work.WorkID) ? untity.AutoProduceID("W",_db.Works) : work.WorkID;
+                work.WorkID = string.IsNullOrWhiteSpace(work.WorkID) ? _untity.AutoProduceID("W",_db.Works) : work.WorkID;
                 _db.Add(work); 
                 _db.SaveChanges();
             }

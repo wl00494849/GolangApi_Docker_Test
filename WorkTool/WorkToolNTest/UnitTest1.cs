@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NSubstitute;
 using WorkTool.Controllers;
 using WorkTool.Models.DataModel;
 using WorkTool.Interface;
@@ -9,10 +10,12 @@ namespace WorkToolNTest
     public class Tests
     {
         HomeController home;
+        
         [SetUp]
-        public void Setup(ISqlClient sql, WorkToolEntity work, IUntityFunction untity)
+        public void Setup()
         {
-            home = new HomeController(sql, work, untity);
+            var sql = Substitute.For();
+            home = new HomeController();
         }
 
         [Test]
