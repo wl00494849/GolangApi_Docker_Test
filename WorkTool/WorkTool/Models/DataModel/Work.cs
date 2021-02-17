@@ -14,7 +14,7 @@ namespace WorkTool.Models.DataModel
         public string WorkUrgent { get; set; }
         public string WorkType { get; set; }
         public string EConsumeTime { get; set; }
-        public string CreateTime { get; set; }
+        public DateTime CreateTime { get; set; }
         public string WorkDate { get; set; }
         public string CompleteDate { get; set; }
     }

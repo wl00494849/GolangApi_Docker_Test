@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using NSubstitute;
 using WorkTool.Controllers;
 using WorkTool.Models.DataModel;
@@ -31,8 +32,9 @@ namespace WorkToolNTest
             home = new HomeController(_sqlClient, _db, _untity);
             var work = new Work()
             {
-                WorkID = "12345678910",
                 WorkContents = "eqweqwe",
+                WorkName = "測試用",
+                CreateTime = DateTime.Now
             };
 
             home.CreateWork(work);

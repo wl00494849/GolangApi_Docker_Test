@@ -49,7 +49,6 @@ namespace WorkTool
             }
 
             dbContext.Database.EnsureCreated();
-            
 
             app.UseStaticFiles();
 
