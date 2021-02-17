@@ -34,11 +34,17 @@ namespace WorkToolNTest
             {
                 WorkContents = "eqweqwe",
                 WorkName = "測試用",
-                CreateTime = DateTime.Now
+                CreateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
             };
 
             home.CreateWork(work);
 
+            Assert.Pass();
+        }
+        [Test]
+        public void Test2()
+        {
+            
             Assert.Pass();
         }
     }
