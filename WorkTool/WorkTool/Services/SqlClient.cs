@@ -9,7 +9,7 @@ namespace WorkTool.Services
 {
     public class SqlClient : ISqlClient
     {
-        private string _ConnectionString { get; set; }
+        protected string _ConnectionString { get; set; }
         public SqlClient(string SqlConnectionStr)
         {
             _ConnectionString = SqlConnectionStr;

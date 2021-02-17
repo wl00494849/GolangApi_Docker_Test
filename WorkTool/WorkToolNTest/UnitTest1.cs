@@ -5,6 +5,7 @@ using WorkTool.Models.DataModel;
 using WorkTool.Services;
 using WorkTool.Interface;
 using WorkTool.Models;
+using WorkToolNTest;
 
 namespace WorkToolNTest
 {
@@ -15,25 +16,26 @@ namespace WorkToolNTest
         private IUntityFunction _untity;
         private WorkToolEntity _db;
 
-        public object Substitute { get; private set; }
-
         [SetUp]
         public void Setup()
         {
-            _sqlClient = Substitute.For<ISqlClient, SqlClient>();
-            _untity = Substitute.For<IUntityFunction, UntityFunction>();
-            _db = Substitute.For<WorkToolEntity>();
-            home = new HomeController(_sqlClient,_db,_untity);
+            var service = new ServicesBuilder();
+            _sqlClient = service.GerService<ISqlClient>();
+            _untity = service.GerService<IUntityFunction>();
+            _db = service.GerService<WorkToolEntity>();
         }
 
         [Test]
         public void CreateWorkTest()
         {
-            home.CreateWork(new Work()
+            home = new HomeController(_sqlClient, _db, _untity);
+            var work = new Work()
             {
                 WorkID = "12345678910",
                 WorkContents = "eqweqwe",
-            });
+            };
+
+            home.CreateWork(work);
 
             Assert.Pass();
         }

@@ -16,7 +16,7 @@ namespace WorkTool.Controllers
         private readonly ISqlClient _sqlClient;
         private readonly IUntityFunction _untity;
         private readonly WorkToolEntity _db;
-        public HomeController(ISqlClient sqlClient,WorkToolEntity workToolEntity,IUntityFunction untity)
+        public HomeController(ISqlClient sqlClient, WorkToolEntity workToolEntity, IUntityFunction untity)
         {
             _sqlClient = sqlClient;
             _db = workToolEntity;
@@ -32,13 +32,23 @@ namespace WorkTool.Controllers
         {
             return View();
         }
-        public void CreateWork(Work work)
+        [HttpPost]
+        public IActionResult CreateWork(Work work)
         {
-            if(ModelState.IsValid)
+            try
             {
-                work.WorkID = string.IsNullOrWhiteSpace(work.WorkID) ? _untity.AutoProduceID("W",_db.Works) : work.WorkID;
-                _db.Add(work); 
-                _db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    work.WorkID = string.IsNullOrWhiteSpace(work.WorkID) ? _untity.AutoProduceID("W", _db.Work) : work.WorkID;
+                    _db.Add(work);
+                    _db.SaveChanges();
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception ex)
+            {
+                throw;
             }
         }
 

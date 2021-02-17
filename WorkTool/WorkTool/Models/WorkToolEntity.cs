@@ -13,6 +13,6 @@ namespace WorkTool.Models
         {
 
         }
-        public DbSet<Work> Works { get; set; }
+        public DbSet<Work> Work { get; set; }
     }
 }
