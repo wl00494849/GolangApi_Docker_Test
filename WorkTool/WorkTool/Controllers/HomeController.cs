@@ -30,6 +30,11 @@ namespace WorkTool.Controllers
 
         public IActionResult Work()
         {
+            return View(_db.Work.ToList());
+        }
+        [HttpGet]
+        public IActionResult CreateWork()
+        {
             return View();
         }
         [HttpPost]
@@ -48,7 +53,7 @@ namespace WorkTool.Controllers
             }
             catch (System.Exception ex)
             {
-                throw;
+                throw;   
             }
         }
 

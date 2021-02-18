@@ -12,10 +12,10 @@ namespace WorkToolNTest
 {
     public class Tests
     {
-        HomeController home;
         private ISqlClient _sqlClient;
         private IUntityFunction _untity;
         private WorkToolEntity _db;
+        private HomeController home;
 
         [SetUp]
         public void Setup()
@@ -24,12 +24,12 @@ namespace WorkToolNTest
             _sqlClient = service.GerService<ISqlClient>();
             _untity = service.GerService<IUntityFunction>();
             _db = service.GerService<WorkToolEntity>();
+            home = new HomeController(_sqlClient, _db, _untity);
         }
 
         [Test]
         public void CreateWorkTest()
         {
-            home = new HomeController(_sqlClient, _db, _untity);
             var work = new Work()
             {
                 WorkContents = "eqweqwe",
@@ -42,10 +42,15 @@ namespace WorkToolNTest
             Assert.Pass();
         }
         [Test]
-        public void Test2()
+        public void WorkTest()
+        {
+            home.Work();
+            Assert.Pass();
+        }
+        [Test]
+        public void Test()
         {
             
-            Assert.Pass();
         }
     }
 }
