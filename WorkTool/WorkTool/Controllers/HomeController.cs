@@ -30,7 +30,15 @@ namespace WorkTool.Controllers
 
         public IActionResult Work()
         {
-            return View(_db.Work.ToList());
+            try
+            {
+                var list = _db.Work.ToList();
+                return View(list);
+            }
+            catch (System.Exception ex)
+            {
+                return RedirectToAction("Error");
+            }
         }
         [HttpGet]
         public IActionResult CreateWork()
@@ -44,17 +52,45 @@ namespace WorkTool.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    work.WorkID = string.IsNullOrWhiteSpace(work.WorkID) ? _untity.AutoProduceID("W", _db.Work) : work.WorkID;
+                    work.WorkID = _untity.AutoProduceID("W", _db.Work);
+                    work.CreateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     _db.Add(work);
                     _db.SaveChanges();
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Work");
             }
             catch (System.Exception ex)
             {
-                throw;   
+                return RedirectToAction("Error");
             }
+        }
+        public IActionResult DeleteWork(string workID)
+        {
+            try
+            {
+                var target = _db.Work.Where(m => m.WorkID == workID).FirstOrDefault();
+                _db.Remove(target);
+
+                return RedirectToAction("Work");
+            }
+            catch (System.Exception)
+            {
+                return RedirectToAction("Error");
+            }
+        }
+        public IActionResult DetailWork(string workID)
+        {
+            try
+            {
+                var data = _db.Work.Where(m => m.WorkID == workID).FirstOrDefault();
+                return View(data);
+            }
+            catch (System.Exception)
+            {
+                return RedirectToAction("Error");
+            }
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

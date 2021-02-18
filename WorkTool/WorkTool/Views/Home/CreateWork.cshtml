@@ -1,0 +1,68 @@
+﻿@model WorkTool.Models.DataModel.Work
+
+@{
+    ViewData["Title"] = "CreateWork";
+}
+
+<h1>CreateWork</h1>
+
+<h4>Work</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateWork">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="WorkName" class="control-label"></label>
+                <input asp-for="WorkName" class="form-control" />
+                <span asp-validation-for="WorkName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkContents" class="control-label"></label>
+                <input asp-for="WorkContents" class="form-control" />
+                <span asp-validation-for="WorkContents" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkStatus" class="control-label"></label>
+                <input asp-for="WorkStatus" class="form-control" />
+                <span asp-validation-for="WorkStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkUrgent" class="control-label"></label>
+                <input asp-for="WorkUrgent" class="form-control" />
+                <span asp-validation-for="WorkUrgent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkType" class="control-label"></label>
+                <input asp-for="WorkType" class="form-control" />
+                <span asp-validation-for="WorkType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EConsumeTime" class="control-label"></label>
+                <input asp-for="EConsumeTime" class="form-control" />
+                <span asp-validation-for="EConsumeTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkDate" class="control-label"></label>
+                <input asp-for="WorkDate" class="form-control" />
+                <span asp-validation-for="WorkDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompleteDate" class="control-label"></label>
+                <input asp-for="CompleteDate" class="form-control" />
+                <span asp-validation-for="CompleteDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Work">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
