@@ -90,7 +90,6 @@ namespace WorkTool.Controllers
             {
                 return RedirectToAction("Error");
             }
-
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

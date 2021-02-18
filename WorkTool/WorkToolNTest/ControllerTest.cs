@@ -34,7 +34,6 @@ namespace WorkToolNTest
             {
                 WorkContents = "測試內容",
                 WorkName = "測試用",
-                CreateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
             };
 
             home.CreateWork(work);

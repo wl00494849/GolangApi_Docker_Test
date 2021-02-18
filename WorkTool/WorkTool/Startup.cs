@@ -48,7 +48,7 @@ namespace WorkTool
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            dbContext.Database.EnsureCreated();
+            //dbContext.Database.EnsureCreated();
 
             app.UseStaticFiles();
 
