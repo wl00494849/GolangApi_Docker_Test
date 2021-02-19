@@ -71,6 +71,7 @@ namespace WorkTool.Controllers
             {
                 var target = _db.Work.Where(m => m.WorkID == workID).FirstOrDefault();
                 _db.Remove(target);
+                _db.SaveChanges();
 
                 return RedirectToAction("Work");
             }
