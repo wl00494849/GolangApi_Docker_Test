@@ -52,7 +52,7 @@ namespace WorkTool.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    work.WorkID = _untity.AutoProduceID("W", _db.Work);
+                    work.WorkID = _untity.AutoProduceID(_db.Work,"WorkID");
                     work.CreateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     _db.Add(work);
                     _db.SaveChanges();

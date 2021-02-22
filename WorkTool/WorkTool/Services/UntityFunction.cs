@@ -5,19 +5,32 @@ using System.Threading.Tasks;
 using WorkTool.Models;
 using WorkTool.Interface;
 using Microsoft.AspNetCore.Hosting;
+using System.Data;
 
 namespace WorkTool.Services
 {
     public class UntityFunction : IUntityFunction
     {
-        public string AutoProduceID<T>(string dataType, IEnumerable<T> dataTable)
+        public string AutoProduceID<T>(IEnumerable<T> dataTable,string primarykey)
         {
-            var newID = "";
-            var idNum = dataTable.Count().ToString();
-            idNum = idNum.PadLeft(10, '0');
-            newID = dataType + idNum;
+            return GetNewID(GetLastID(dataTable,primarykey));
+        }
 
+        private string GetLastID <T>(IEnumerable<T> dataTable,string primarykey)
+        {
+            return dataTable.LastOrDefault().GetType().GetProperty(primarykey).GetValue(dataTable.LastOrDefault()).ToString();
+        }
+
+        private string GetNewID (string id)
+        {
+            var newID = (Convert.ToInt32(id) + 1).ToString();
+            newID = newID.PadLeft(id.Length,'0');
             return newID;
+        }
+
+        public void Pipeline()
+        {
+            foreach(var iten in new List<DataTable>());
         }
     }
 }

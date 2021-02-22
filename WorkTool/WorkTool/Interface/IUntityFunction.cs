@@ -7,6 +7,6 @@ namespace WorkTool.Interface
 {
     public interface IUntityFunction
     {
-        public string AutoProduceID<T>(string dataType,IEnumerable<T> dataTable);
+        public string AutoProduceID<T>(IEnumerable<T> dataTable,string primarykey);
     }
 }

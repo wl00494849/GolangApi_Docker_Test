@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace WorkTool.Models.DataModel
     public partial class Work {}
     public class MetaDataWork
     {
+        [Key]
         [DisplayName("編號")]
         public string WorkID { get; set; }
         [DisplayName("工作名稱")]
