@@ -21,9 +21,9 @@ namespace WorkToolNTest
         public void Setup()
         {
             var service = new ServicesBuilder();
-            _sqlClient = service.GerService<ISqlClient>();
-            _untity = service.GerService<IUntityFunction>();
-            _db = service.GerService<WorkToolEntity>();
+            _sqlClient = service.GetService<ISqlClient>();
+            _untity = service.GetService<IUntityFunction>();
+            _db = service.GetService<WorkToolEntity>();
             home = new HomeController(_sqlClient, _db, _untity);
         }
 

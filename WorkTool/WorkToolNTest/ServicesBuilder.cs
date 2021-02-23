@@ -17,7 +17,7 @@ namespace WorkToolNTest
             .UseStartup<Startup>()
             .Build();
         }
-        public T GerService <T>()
+        public T GetService <T>()
         {
             var scope = _webHost.Services.CreateScope();
             return scope.ServiceProvider.GetRequiredService<T>();
