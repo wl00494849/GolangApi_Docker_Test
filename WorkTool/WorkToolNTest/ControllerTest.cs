@@ -28,7 +28,7 @@ namespace WorkToolNTest
             _db = service.GetService<WorkToolEntity>();
             home = new HomeController(_sqlClient, _db, _untity);
         }
-
+        [Ignore("")]
         [Test]
         public void CreateWorkTest()
         {
@@ -42,6 +42,7 @@ namespace WorkToolNTest
 
             Assert.Pass();
         }
+        [Ignore("")]
         [Test]
         public void WorkTest()
         {
