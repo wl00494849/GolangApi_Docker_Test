@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using NSubstitute;
 using WorkTool.Controllers;
 using WorkTool.Models.DataModel;
@@ -47,9 +49,13 @@ namespace WorkToolNTest
             Assert.Pass();
         }
         [Test]
-        public void Test()
+        public void AutoProduceIDTest()
         {
-            
+            var newID = _untity.AutoProduceID(_db.Work, "WorkID");
+            var newIDTest = (Convert.ToInt32(_db.Work.ToList().LastOrDefault().WorkID) + 1).ToString();
+            newIDTest = newIDTest.PadLeft(10, '0');
+
+            Assert.AreEqual(newIDTest, newID);
         }
     }
 }
