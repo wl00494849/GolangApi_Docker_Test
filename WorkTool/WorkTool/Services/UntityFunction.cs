@@ -18,6 +18,8 @@ namespace WorkTool.Services
 
         private string GetLastID <T>(IEnumerable<T> dataTable,string primarykey)
         {
+            //有點慢...不應該用Reflection
+            //找時間修正
             return dataTable.LastOrDefault().GetType().GetProperty(primarykey).GetValue(dataTable.LastOrDefault()).ToString();
         }
 
