@@ -20,7 +20,8 @@ namespace WorkTool.Services
         {
             //有點慢...不應該用Reflection
             //找時間修正
-            return dataTable.LastOrDefault().GetType().GetProperty(primarykey).GetValue(dataTable.LastOrDefault()).ToString();
+            var data = dataTable.LastOrDefault();
+            return data.GetType().GetProperty(primarykey).GetValue(data).ToString();;
         }
 
         private string GetNewID (string id)
