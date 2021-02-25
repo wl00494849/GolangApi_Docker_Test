@@ -93,6 +93,11 @@ namespace WorkTool.Controllers
             }
         }
 
+        public JsonResult WorkListJson()
+        {
+            return Json(_db.Work.ToList());
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
