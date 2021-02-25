@@ -10,14 +10,13 @@ using WorkTool.Interface;
 using WorkTool.Models;
 using WorkToolNTest;
 
-namespace WorkToolNTest
+namespace WorkNTest
 {
     public class Tests
     {
         private IUntityFunction _untity;
         private IWorkServers _work;
         private WorkToolEntity _db;
-        private HomeController home;
 
         [SetUp]
         public void Setup()
@@ -26,30 +25,22 @@ namespace WorkToolNTest
             _untity = service.GetService<IUntityFunction>();
             _db = service.GetService<WorkToolEntity>();
             _work = service.GetService<IWorkServers>();
-            
-            home = new HomeController(_work);
         }
-        [Ignore("")]
         [Test]
         public void CreateWorkTest()
         {
             var work = new Work()
             {
+                WorkID = "Test000000",
                 WorkContents = "測試內容",
                 WorkName = "測試用",
             };
 
-            home.CreateWork(work);
+            _work.CreateWork(work);
+            _work.DeleteWork("Test000000");
+            Assert.Pass();
+        }
 
-            Assert.Pass();
-        }
-        [Ignore("")]
-        [Test]
-        public void WorkTest()
-        {
-            home.Work();
-            Assert.Pass();
-        }
         [Test]
         public void AutoProduceIDTest()
         {
@@ -59,6 +50,7 @@ namespace WorkToolNTest
 
             Assert.AreEqual(newIDTest, newID);
         }
+        
         [Test]
         public void WorkListJsonTest()
         {

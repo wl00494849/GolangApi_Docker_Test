@@ -24,7 +24,7 @@ namespace WorkTool.Services
         }
         public void CreateWork(Work work)
         {
-            work.WorkID = _untity.AutoProduceID(_db.Work, "WorkID");
+            work.WorkID = string.IsNullOrWhiteSpace(work.WorkID) ? _untity.AutoProduceID(_db.Work, "WorkID") : work.WorkID;
             work.CreateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             _db.Add(work);
             _db.SaveChanges();
