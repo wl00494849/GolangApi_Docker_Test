@@ -46,7 +46,6 @@ namespace WorkTool
                 options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
             );
 
-
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
             services.AddSingleton<IUntityFunction, UntityFunction>();
             services.AddScoped<ICRUD<Work>, WorkServers>();

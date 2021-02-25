@@ -86,11 +86,6 @@ namespace WorkTool.Controllers
             return Json(_work.GetList());
         }
 
-        public ActionResult AngularPage()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
