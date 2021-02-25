@@ -31,17 +31,21 @@ namespace WorkTool
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddDbContext<WorkToolEntity>
             (
                 options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
             );
+
             services.AddCors(
                 option => option.AddPolicy(
                     name:"AllowSpecificOrigins",
-                    builer => builer.WithOrigins(
-                        "http://localhost:4200"
-                        )
-                ));
+                    builer => builer.WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                )
+            );
 
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
             services.AddSingleton<IUntityFunction, UntityFunction>();
@@ -70,7 +74,7 @@ namespace WorkTool
             app.UseAuthorization();
 
             app.UseCors(AllowSpecificOrigins);
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
