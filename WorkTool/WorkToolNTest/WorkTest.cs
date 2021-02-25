@@ -15,7 +15,7 @@ namespace WorkNTest
     public class Tests
     {
         private IUntityFunction _untity;
-        private IWorkServers _work;
+        private ICRUD<Work> _work;
         private WorkToolEntity _db;
 
         [SetUp]
@@ -24,7 +24,7 @@ namespace WorkNTest
             var service = new ServicesBuilder();
             _untity = service.GetService<IUntityFunction>();
             _db = service.GetService<WorkToolEntity>();
-            _work = service.GetService<IWorkServers>();
+            _work = service.GetService<ICRUD<Work>>();
         }
         [Test]
         public void CreateWorkTest()
@@ -36,8 +36,8 @@ namespace WorkNTest
                 WorkName = "測試用",
             };
 
-            _work.CreateWork(work);
-            _work.DeleteWork("Test000000");
+            _work.Create(work);
+            _work.Delete("Test000000");
             Assert.Pass();
         }
 
@@ -54,7 +54,7 @@ namespace WorkNTest
         [Test]
         public void WorkListJsonTest()
         {
-            var workList = _work.GetWorkList();
+            var workList = _work.GetList();
             Assert.IsNotEmpty(workList);
         }
     }

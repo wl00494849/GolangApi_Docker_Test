@@ -13,8 +13,8 @@ namespace WorkTool.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IWorkServers _work;
-        public HomeController(IWorkServers work)
+        private readonly ICRUD<Work> _work;
+        public HomeController(ICRUD<Work> work)
         {
             _work = work;
         }
@@ -28,7 +28,7 @@ namespace WorkTool.Controllers
         {
             try
             {
-                return View(_work.GetWorkList());
+                return View(_work.GetList());
             }
             catch (System.Exception ex)
             {
@@ -47,7 +47,7 @@ namespace WorkTool.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _work.CreateWork(work);
+                    _work.Create(work);
                     return RedirectToAction("Work");
                 }
                 return View(work);
@@ -61,7 +61,7 @@ namespace WorkTool.Controllers
         {
             try
             {
-                _work.DeleteWork(workID);
+                _work.Delete(workID);
                 return RedirectToAction("Work");
             }
             catch (System.Exception)
@@ -73,7 +73,7 @@ namespace WorkTool.Controllers
         {
             try
             {
-                return View(_work.DetailWork(workID));
+                return View(_work.Detail(workID));
             }
             catch (System.Exception)
             {
@@ -83,7 +83,7 @@ namespace WorkTool.Controllers
 
         public JsonResult WorkListJson()
         {
-            return Json(_work.GetWorkList());
+            return Json(_work.GetList());
         }
 
         public ActionResult AngularPage()

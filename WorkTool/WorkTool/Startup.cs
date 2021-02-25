@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using WorkTool.Models.DataModel;
 
 namespace WorkTool
 {
@@ -35,7 +36,7 @@ namespace WorkTool
 
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
             services.AddSingleton<IUntityFunction,UntityFunction>();
-            services.AddScoped<IWorkServers,WorkServers>();
+            services.AddScoped<ICRUD<Work>,WorkServers>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
