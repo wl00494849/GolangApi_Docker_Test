@@ -14,8 +14,8 @@ namespace WorkToolNTest
 {
     public class Tests
     {
-        private ISqlClient _sqlClient;
         private IUntityFunction _untity;
+        private IWorkServers _work;
         private WorkToolEntity _db;
         private HomeController home;
 
@@ -23,10 +23,11 @@ namespace WorkToolNTest
         public void Setup()
         {
             var service = new ServicesBuilder();
-            _sqlClient = service.GetService<ISqlClient>();
             _untity = service.GetService<IUntityFunction>();
             _db = service.GetService<WorkToolEntity>();
-            home = new HomeController(_sqlClient, _db, _untity);
+            _work = service.GetService<IWorkServers>();
+            
+            home = new HomeController(_work,_db, _untity);
         }
         [Ignore("")]
         [Test]
@@ -57,6 +58,12 @@ namespace WorkToolNTest
             newIDTest = newIDTest.PadLeft(10, '0');
 
             Assert.AreEqual(newIDTest, newID);
+        }
+        [Test]
+        public void WorkListJsonTest()
+        {
+            var workList = _work.GetWorkList();
+            Assert.IsNotEmpty(workList);
         }
     }
 }

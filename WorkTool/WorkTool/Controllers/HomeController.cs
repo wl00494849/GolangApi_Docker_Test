@@ -13,14 +13,14 @@ namespace WorkTool.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ISqlClient _sqlClient;
         private readonly IUntityFunction _untity;
+        private readonly IWorkServers _work;
         private readonly WorkToolEntity _db;
-        public HomeController(ISqlClient sqlClient, WorkToolEntity workToolEntity, IUntityFunction untity)
+        public HomeController(IWorkServers work,WorkToolEntity workToolEntity, IUntityFunction untity)
         {
-            _sqlClient = sqlClient;
             _db = workToolEntity;
             _untity = untity;
+            _work = work;
         }
 
         public IActionResult Index()
@@ -52,7 +52,7 @@ namespace WorkTool.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    work.WorkID = _untity.AutoProduceID(_db.Work,"WorkID");
+                    work.WorkID = _untity.AutoProduceID(_db.Work, "WorkID");
                     work.CreateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     _db.Add(work);
                     _db.SaveChanges();
@@ -95,7 +95,7 @@ namespace WorkTool.Controllers
 
         public JsonResult WorkListJson()
         {
-            return Json(_db.Work.ToList());
+            return Json(_work.GetWorkList());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

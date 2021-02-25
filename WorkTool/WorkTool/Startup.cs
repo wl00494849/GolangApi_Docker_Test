@@ -35,6 +35,7 @@ namespace WorkTool
 
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
             services.AddSingleton<IUntityFunction,UntityFunction>();
+            services.AddScoped<IWorkServers,WorkServers>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
