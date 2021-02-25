@@ -48,7 +48,7 @@ namespace WorkTool
             //Singleton整個程序只建立一個
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
             services.AddSingleton<IUntityFunction, UntityFunction>();
-            //Scoped請求到回傳共用一個
+            //Scoped網站Request到Respons共用一個
             services.AddScoped<ICRUD<Work>, WorkServers>();
             //Transient每請求一次建立一個新的
 
