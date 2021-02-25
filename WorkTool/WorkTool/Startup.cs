@@ -24,19 +24,11 @@ namespace WorkTool
         }
 
         public IConfiguration Configuration { get; }
-        public string AllowSpecificOrigins;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         //設定應用程式服務
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
-            services.AddDbContext<WorkToolEntity>
-            (
-                options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
-            );
-
             services.AddCors(
                 option => option.AddPolicy(
                     name:"AllowSpecificOrigins",
@@ -46,6 +38,14 @@ namespace WorkTool
                     .AllowCredentials()
                 )
             );
+
+            services.AddControllersWithViews();
+
+            services.AddDbContext<WorkToolEntity>
+            (
+                options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
+            );
+
 
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
             services.AddSingleton<IUntityFunction, UntityFunction>();
@@ -73,7 +73,7 @@ namespace WorkTool
 
             app.UseAuthorization();
 
-            app.UseCors(AllowSpecificOrigins);
+            app.UseCors("AllowSpecificOrigins");
 
             app.UseEndpoints(endpoints =>
             {
