@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Cors;
 using WorkTool.Models.DataModel;
 
 namespace WorkTool
@@ -29,6 +28,7 @@ namespace WorkTool
         //設定應用程式服務
         public void ConfigureServices(IServiceCollection services)
         {
+            //跨域處理
             services.AddCors(
                 option => option.AddPolicy(
                     name:"AllowSpecificOrigins",
@@ -45,10 +45,13 @@ namespace WorkTool
             (
                 options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
             );
-
+            //Singleton整個程序只建立一個
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
             services.AddSingleton<IUntityFunction, UntityFunction>();
+            //Scoped請求到回傳共用一個
             services.AddScoped<ICRUD<Work>, WorkServers>();
+            //Transient每請求一次建立一個新的
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,7 +74,7 @@ namespace WorkTool
             app.UseRouting();
 
             app.UseAuthorization();
-
+            //跨域處理
             app.UseCors("AllowSpecificOrigins");
 
             app.UseEndpoints(endpoints =>
