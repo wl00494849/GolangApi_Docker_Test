@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 using WorkTool.Models.DataModel;
 
 namespace WorkTool
@@ -23,6 +24,7 @@ namespace WorkTool
         }
 
         public IConfiguration Configuration { get; }
+        public string AllowSpecificOrigins;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         //設定應用程式服務
@@ -33,15 +35,22 @@ namespace WorkTool
             (
                 options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
             );
+            services.AddCors(
+                option => option.AddPolicy(
+                    name:"AllowSpecificOrigins",
+                    builer => builer.WithOrigins(
+                        "http://localhost:4200"
+                        )
+                ));
 
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
-            services.AddSingleton<IUntityFunction,UntityFunction>();
-            services.AddScoped<ICRUD<Work>,WorkServers>();
+            services.AddSingleton<IUntityFunction, UntityFunction>();
+            services.AddScoped<ICRUD<Work>, WorkServers>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         //設定應用程式請求
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,WorkToolEntity dbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WorkToolEntity dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -60,6 +69,8 @@ namespace WorkTool
 
             app.UseAuthorization();
 
+            app.UseCors(AllowSpecificOrigins);
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
