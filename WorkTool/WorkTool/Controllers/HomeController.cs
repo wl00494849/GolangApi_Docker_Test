@@ -13,13 +13,9 @@ namespace WorkTool.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUntityFunction _untity;
         private readonly IWorkServers _work;
-        private readonly WorkToolEntity _db;
-        public HomeController(IWorkServers work,WorkToolEntity workToolEntity, IUntityFunction untity)
+        public HomeController(IWorkServers work)
         {
-            _db = workToolEntity;
-            _untity = untity;
             _work = work;
         }
 
@@ -32,8 +28,7 @@ namespace WorkTool.Controllers
         {
             try
             {
-                var list = _db.Work.ToList();
-                return View(list);
+                return View(_work.GetWorkList());
             }
             catch (System.Exception ex)
             {
@@ -52,13 +47,10 @@ namespace WorkTool.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    work.WorkID = _untity.AutoProduceID(_db.Work, "WorkID");
-                    work.CreateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                    _db.Add(work);
-                    _db.SaveChanges();
+                    _work.CreateWork(work);
+                    return RedirectToAction("Work");
                 }
-
-                return RedirectToAction("Work");
+                return View(work);
             }
             catch (System.Exception ex)
             {
@@ -69,10 +61,7 @@ namespace WorkTool.Controllers
         {
             try
             {
-                var target = _db.Work.Where(m => m.WorkID == workID).FirstOrDefault();
-                _db.Remove(target);
-                _db.SaveChanges();
-
+                _work.DeleteWork(workID);
                 return RedirectToAction("Work");
             }
             catch (System.Exception)
@@ -84,8 +73,7 @@ namespace WorkTool.Controllers
         {
             try
             {
-                var data = _db.Work.Where(m => m.WorkID == workID).FirstOrDefault();
-                return View(data);
+                return View(_work.DetailWork(workID));
             }
             catch (System.Exception)
             {

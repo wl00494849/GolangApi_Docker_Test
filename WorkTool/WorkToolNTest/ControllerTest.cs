@@ -27,7 +27,7 @@ namespace WorkToolNTest
             _db = service.GetService<WorkToolEntity>();
             _work = service.GetService<IWorkServers>();
             
-            home = new HomeController(_work,_db, _untity);
+            home = new HomeController(_work);
         }
         [Ignore("")]
         [Test]
