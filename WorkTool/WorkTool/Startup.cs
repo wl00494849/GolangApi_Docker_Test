@@ -46,9 +46,9 @@ namespace WorkTool
                 options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
             );
             //Singleton整個程序只建立一個
-            services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
             services.AddSingleton<IUntityFunction, UntityFunction>();
             //Scoped網站Request到Respons共用一個
+            services.AddScoped<ISqlClient,SqlClient>();
             services.AddScoped<IWork, WorkServers>();
             //Transient每請求一次建立一個新的
 

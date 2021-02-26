@@ -4,15 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using WorkTool.Interface;
+using Microsoft.Extensions.Configuration;
 
 namespace WorkTool.Services
 {
     public class SqlClient : ISqlClient
     {
         protected string _ConnectionString { get; set; }
-        public SqlClient(string SqlConnectionStr)
+        public SqlClient(IConfiguration configuration)
         {
-            _ConnectionString = SqlConnectionStr;
+            _ConnectionString = configuration["ConnectionStrings:WorkToolConnectionString"];
         }
         public SqlConnection Conn()
         {

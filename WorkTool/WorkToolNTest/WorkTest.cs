@@ -17,6 +17,7 @@ namespace WorkNTest
         private IUntityFunction _untity;
         private IWork _work;
         private WorkToolEntity _db;
+        private ISqlClient _sqlClient;
 
         [SetUp]
         public void Setup()
@@ -25,6 +26,8 @@ namespace WorkNTest
             _untity = service.GetService<IUntityFunction>();
             _db = service.GetService<WorkToolEntity>();
             _work = service.GetService<IWork>();
+            _sqlClient = service.GetService<ISqlClient>();
+
         }
         [Test]
         public void CreateWorkTest()
@@ -56,6 +59,12 @@ namespace WorkNTest
         {
             var workList = _work.GetList();
             Assert.IsNotEmpty(workList);
+        }
+        [Test]
+        public void OpenConnectionTest()
+        {
+            var conn = _sqlClient.Conn();
+            Assert.IsNotNull(conn);
         }
     }
 }
