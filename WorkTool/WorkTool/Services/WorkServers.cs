@@ -8,7 +8,7 @@ using WorkTool.Interface;
 
 namespace WorkTool.Services
 {
-    public class WorkServers : ICRUD<Work>
+    public class WorkServers : IWork
     {
         WorkToolEntity _db;
         IUntityFunction _untity;

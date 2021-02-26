@@ -49,7 +49,7 @@ namespace WorkTool
             services.AddSingleton<ISqlClient>(new SqlClient(Configuration["ConnectionStrings:WorkToolConnectionString"]));
             services.AddSingleton<IUntityFunction, UntityFunction>();
             //Scoped網站Request到Respons共用一個
-            services.AddScoped<ICRUD<Work>, WorkServers>();
+            services.AddScoped<IWork, WorkServers>();
             //Transient每請求一次建立一個新的
 
         }
