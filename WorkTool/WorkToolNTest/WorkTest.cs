@@ -15,7 +15,7 @@ namespace WorkNTest
     public class Tests
     {
         private IUntityFunction _untity;
-        private ICRUD<Work> _work;
+        private IWork _work;
         private WorkToolEntity _db;
 
         [SetUp]
@@ -24,7 +24,7 @@ namespace WorkNTest
             var service = new ServicesBuilder();
             _untity = service.GetService<IUntityFunction>();
             _db = service.GetService<WorkToolEntity>();
-            _work = service.GetService<ICRUD<Work>>();
+            _work = service.GetService<IWork>();
         }
         [Test]
         public void CreateWorkTest()
