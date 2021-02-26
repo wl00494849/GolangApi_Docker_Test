@@ -13,8 +13,8 @@ namespace WorkTool.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ICRUD<Work> _work;
-        public HomeController(ICRUD<Work> work)
+        private readonly IWork _work;
+        public HomeController(IWork work)
         {
             _work = work;
         }

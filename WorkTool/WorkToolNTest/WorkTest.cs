@@ -12,7 +12,7 @@ using WorkToolNTest;
 
 namespace WorkNTest
 {
-    public class Tests
+    public class WorkTest
     {
         private IUntityFunction _untity;
         private IWork _work;
