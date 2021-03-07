@@ -1,14 +1,15 @@
 using NUnit.Framework;
 using System;
 using System.Linq;
+using System.IO;
 using System.Collections.Generic;
 using NSubstitute;
-using WorkTool.Controllers;
 using WorkTool.Models.DataModel;
 using WorkTool.Services;
 using WorkTool.Interface;
 using WorkTool.Models;
 using WorkToolNTest;
+using Microsoft.AspNetCore.Http;
 
 namespace WorkNTest
 {
@@ -65,6 +66,26 @@ namespace WorkNTest
         {
             var conn = _sqlClient.Conn();
             Assert.IsNotNull(conn);
+        }
+        [Test]
+        public void UploadTest()
+        {
+            var path = "C:\\Users\\wl004\\OneDrive\\桌面\\WorkTool_Core_MVC\\WorkTool\\WorkToolNTest\\TestDocument\\Test.txt";
+            var file = new FileStream(path,FileMode.Open);
+            var memory = new MemoryStream();
+            file.CopyTo(memory);
+
+            IFormFile formFile = new FormFile(
+                baseStream:memory,
+                baseStreamOffset:0,
+                length:file.Length,
+                name:"data",
+                fileName:"Test.txt"
+            );
+
+            _untity.Upload(formFile);
+
+            Assert.Pass();
         }
     }
 }

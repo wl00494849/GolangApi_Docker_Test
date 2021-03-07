@@ -18,7 +18,8 @@ namespace WorkTool.Services
 
         public void Upload(IFormFile file)
         {
-            var path = $"/UploadFolder/{file.Name}";
+            //找時間改虛擬路徑
+            var path = $"C:\\Users\\wl004\\OneDrive\\桌面\\WorkTool_Core_MVC\\WorkTool\\WorkTool\\UploadFolder\\{file.FileName}";
             using(var stream = new FileStream(path,FileMode.Create))
             {
                 file.CopyTo(stream);
