@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WorkTool.Models;
 using WorkTool.Interface;
 using Microsoft.AspNetCore.Hosting;
-using System.Data;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace WorkTool.Services
 {
@@ -14,6 +14,15 @@ namespace WorkTool.Services
         public string AutoProduceID<T>(IEnumerable<T> dataTable,string primarykey)
         {
             return GetNewID(GetLastID(dataTable,primarykey));
+        }
+
+        public void Upload(IFormFile file)
+        {
+            var path = $"/UploadFolder/{file.Name}";
+            using(var stream = new FileStream(path,FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
         }
 
         private string GetLastID <T>(IEnumerable<T> dataTable,string primarykey)
@@ -29,11 +38,6 @@ namespace WorkTool.Services
             var newID = (Convert.ToInt32(id) + 1).ToString();
             newID = newID.PadLeft(id.Length,'0');
             return newID;
-        }
-
-        public void Pipeline()
-        {
-            foreach(var iten in new List<DataTable>());
         }
     }
 }

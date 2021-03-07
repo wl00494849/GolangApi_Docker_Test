@@ -14,9 +14,11 @@ namespace WorkTool.Controllers
     public class HomeController : Controller
     {
         private readonly IWork _work;
-        public HomeController(IWork work)
+        private readonly ILogger _logger;
+        public HomeController(IWork work,ILogger<HomeController> logger)
         {
             _work = work;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -32,6 +34,7 @@ namespace WorkTool.Controllers
             }
             catch (System.Exception ex)
             {
+                _logger.LogInformation(ex.ToString());
                 return RedirectToAction("Error");
             }
         }
@@ -54,6 +57,7 @@ namespace WorkTool.Controllers
             }
             catch (System.Exception ex)
             {
+                _logger.LogInformation(ex.ToString());
                 return RedirectToAction("Error");
             }
         }
@@ -64,8 +68,9 @@ namespace WorkTool.Controllers
                 _work.Delete(workID);
                 return RedirectToAction("Work");
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
+                _logger.LogInformation(ex.ToString());
                 return RedirectToAction("Error");
             }
         }
@@ -75,8 +80,9 @@ namespace WorkTool.Controllers
             {
                 return View(_work.Detail(workID));
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
+                _logger.LogInformation(ex.ToString());
                 return RedirectToAction("Error");
             }
         }
