@@ -8,6 +8,7 @@ using WorkTool.Interface;
 using Microsoft.Extensions.Logging;
 using WorkTool.Models.DataModel;
 using WorkTool.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace WorkTool.Controllers
 {
@@ -15,10 +16,12 @@ namespace WorkTool.Controllers
     {
         private readonly IWork _work;
         private readonly ILogger _logger;
-        public HomeController(IWork work,ILogger<HomeController> logger)
+        private readonly IUntityFunction _unity;
+        public HomeController(IWork work, ILogger<HomeController> logger, IUntityFunction untity)
         {
             _work = work;
             _logger = logger;
+            _unity = untity;
         }
 
         public IActionResult Index()
@@ -90,6 +93,25 @@ namespace WorkTool.Controllers
         public JsonResult WorkListJson()
         {
             return Json(_work.GetList());
+        }
+        public IActionResult Upload()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Upload(IFormFile file)
+        {
+            try
+            {
+                _unity.Upload(file);
+                return View();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
