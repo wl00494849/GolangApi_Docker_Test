@@ -43,6 +43,8 @@ namespace WorkTool
             //新增Swagger
             services.AddSwaggerGen();
 
+            
+
             services.AddDbContext<WorkToolEntity>
             (
                 options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
