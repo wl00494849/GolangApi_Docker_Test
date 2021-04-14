@@ -94,10 +94,7 @@ namespace WorkTool.Controllers
         {
             return Json(_work.GetList());
         }
-        public IActionResult Upload()
-        {
-            return View();
-        }
+        public IActionResult Upload() => new ViewResult();
         [HttpPost]
         public IActionResult Upload(IFormFile file)
         {
@@ -106,9 +103,8 @@ namespace WorkTool.Controllers
                 _unity.Upload(file);
                 return View();
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-
                 throw;
             }
 

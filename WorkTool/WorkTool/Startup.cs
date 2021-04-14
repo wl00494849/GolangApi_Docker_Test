@@ -31,7 +31,7 @@ namespace WorkTool
             //跨域處理
             services.AddCors(
                 option => option.AddPolicy(
-                    name:"AllowSpecificOrigins",
+                    name: "AllowSpecificOjrigins",
                     builer => builer.WithOrigins("http://localhost:4200")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
@@ -40,6 +40,8 @@ namespace WorkTool
             );
 
             services.AddControllersWithViews();
+            //新增Swagger
+            services.AddSwaggerGen();
 
             services.AddDbContext<WorkToolEntity>
             (
@@ -48,7 +50,7 @@ namespace WorkTool
             //Singleton整個程序只建立一個
             services.AddSingleton<IUntityFunction, UntityFunction>();
             //Scoped網站Request到Respons共用一個
-            services.AddScoped<ISqlClient,SqlClient>();
+            services.AddScoped<ISqlClient, SqlClient>();
             services.AddScoped<IWork, WorkServers>();
             //Transient每請求一次建立一個新的
 
@@ -66,6 +68,13 @@ namespace WorkTool
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger");
+                c.RoutePrefix = string.Empty;
+            });
 
             //dbContext.Database.EnsureCreated();
 

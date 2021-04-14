@@ -38,6 +38,7 @@ namespace WorkNTest
                 WorkID = "Test000000",
                 WorkContents = "測試內容",
                 WorkName = "測試用",
+                
             };
 
             _work.Create(work);
@@ -72,11 +73,11 @@ namespace WorkNTest
         {
             var path = "C:\\Users\\wl004\\OneDrive\\桌面\\WorkTool_Core_MVC\\WorkTool\\WorkToolNTest\\TestDocument\\Test.txt";
             var file = new FileStream(path,FileMode.Open);
-            var memory = new MemoryStream();
-            file.CopyTo(memory);
+            var ms = new MemoryStream();
+            file.CopyTo(ms);
 
             IFormFile formFile = new FormFile(
-                baseStream:memory,
+                baseStream:ms,
                 baseStreamOffset:0,
                 length:file.Length,
                 name:"data",
