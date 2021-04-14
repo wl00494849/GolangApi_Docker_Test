@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using WorkTool.Models.DataModel;
+using Microsoft.OpenApi.Models;
 
 namespace WorkTool
 {
@@ -40,9 +41,8 @@ namespace WorkTool
             );
 
             services.AddControllersWithViews();
-            //新增Swagger
+            //新增Swagger Doc文件
             services.AddSwaggerGen();
-
             
 
             services.AddDbContext<WorkToolEntity>
@@ -94,6 +94,8 @@ namespace WorkTool
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }

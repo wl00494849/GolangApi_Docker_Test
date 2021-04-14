@@ -23,12 +23,12 @@ namespace WorkTool.Controllers
             _logger = logger;
             _unity = untity;
         }
-
+        [HttpGet("Index")]
         public IActionResult Index()
         {
             return View();
         }
-
+        [HttpGet("Work")]
         public IActionResult Work()
         {
             try
@@ -41,12 +41,11 @@ namespace WorkTool.Controllers
                 return RedirectToAction("Error");
             }
         }
-        [HttpGet]
         public IActionResult CreateWork()
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost("CreateWork")]
         public IActionResult CreateWork(Work work)
         {
             try
@@ -64,6 +63,7 @@ namespace WorkTool.Controllers
                 return RedirectToAction("Error");
             }
         }
+        [HttpPost("DeleteWork")]
         public IActionResult DeleteWork(string workID)
         {
             try
@@ -77,6 +77,7 @@ namespace WorkTool.Controllers
                 return RedirectToAction("Error");
             }
         }
+        [HttpPost("DetailWork")]
         public IActionResult DetailWork(string workID)
         {
             try
@@ -89,13 +90,13 @@ namespace WorkTool.Controllers
                 return RedirectToAction("Error");
             }
         }
-
+        [HttpPost("WorkListJson")]
         public JsonResult WorkListJson()
         {
             return Json(_work.GetList());
         }
         public IActionResult Upload() => new ViewResult();
-        [HttpPost]
+        [HttpPost("Upload")]
         public IActionResult Upload(IFormFile file)
         {
             try
