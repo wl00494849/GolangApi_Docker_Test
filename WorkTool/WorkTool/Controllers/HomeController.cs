@@ -23,28 +23,7 @@ namespace WorkTool.Controllers
             _logger = logger;
             _unity = untity;
         }
-        [HttpGet("Index")]
-        public IActionResult Index()
-        {
-            return View();
-        }
-        [HttpGet("Work")]
-        public IActionResult Work()
-        {
-            try
-            {
-                return View(_work.GetList());
-            }
-            catch (System.Exception ex)
-            {
-                _logger.LogInformation(ex.ToString());
-                return RedirectToAction("Error");
-            }
-        }
-        public IActionResult CreateWork()
-        {
-            return View();
-        }
+
         [HttpPost("CreateWork")]
         public IActionResult CreateWork(Work work)
         {
@@ -95,7 +74,6 @@ namespace WorkTool.Controllers
         {
             return Json(_work.GetList());
         }
-        public IActionResult Upload() => new ViewResult();
         [HttpPost("Upload")]
         public IActionResult Upload(IFormFile file)
         {
