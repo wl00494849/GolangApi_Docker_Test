@@ -54,7 +54,7 @@ namespace WorkTool.Controllers
                 _logger.LogInformation(ex.ToString());
             }
         }
-        
+
         [HttpPost("DetailWork")]
         public Work DetailWork(string workID)
         {
@@ -67,18 +67,9 @@ namespace WorkTool.Controllers
             return Json(_work.GetList());
         }
         [HttpPost("Upload")]
-        public IActionResult Upload(IFormFile file)
+        public void Upload(IFormFile file)
         {
-            try
-            {
-                _unity.Upload(file);
-                return View();
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
-
+            _unity.Upload(file);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
