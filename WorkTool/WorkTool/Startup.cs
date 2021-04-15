@@ -11,8 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using WorkTool.Models.DataModel;
-using Microsoft.OpenApi.Models;
+using MySql.EntityFrameworkCore.DataAnnotations;
 
 namespace WorkTool
 {
@@ -44,10 +43,15 @@ namespace WorkTool
             //新增Swagger Doc文件
             services.AddSwaggerGen();
             
+            //MS-SQL Server
+            // services.AddDbContext<WorkToolEntity>
+            // (
+            //     options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
+            // );
 
             services.AddDbContext<WorkToolEntity>
             (
-                options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
+                options => options.UseMySQL(Configuration["ConnectionStrings:MySQL_WorkToolConnectionString"])
             );
             //Singleton整個程序只建立一個
             services.AddSingleton<IUntityFunction, UntityFunction>();
@@ -94,7 +98,7 @@ namespace WorkTool
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
+            
             
         }
     }
