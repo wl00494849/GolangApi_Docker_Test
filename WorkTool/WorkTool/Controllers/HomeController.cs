@@ -43,32 +43,24 @@ namespace WorkTool.Controllers
             }
         }
         [HttpPost("DeleteWork")]
-        public IActionResult DeleteWork(string workID)
+        public void DeleteWork(string workID)
         {
             try
             {
                 _work.Delete(workID);
-                return RedirectToAction("Work");
             }
             catch (System.Exception ex)
             {
                 _logger.LogInformation(ex.ToString());
-                return RedirectToAction("Error");
             }
         }
+        
         [HttpPost("DetailWork")]
-        public IActionResult DetailWork(string workID)
+        public Work DetailWork(string workID)
         {
-            try
-            {
-                return View(_work.Detail(workID));
-            }
-            catch (System.Exception ex)
-            {
-                _logger.LogInformation(ex.ToString());
-                return RedirectToAction("Error");
-            }
+            return _work.Detail(workID);
         }
+
         [HttpPost("WorkListJson")]
         public JsonResult WorkListJson()
         {

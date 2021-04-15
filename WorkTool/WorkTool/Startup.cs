@@ -48,11 +48,13 @@ namespace WorkTool
             // (
             //     options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
             // );
-
+            
+            //MySQL Server
             services.AddDbContext<WorkToolEntity>
             (
                 options => options.UseMySQL(Configuration["ConnectionStrings:MySQL_WorkToolConnectionString"])
             );
+
             //Singleton整個程序只建立一個
             services.AddSingleton<IUntityFunction, UntityFunction>();
             //Scoped網站Request到Respons共用一個
