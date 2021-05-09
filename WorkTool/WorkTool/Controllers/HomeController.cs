@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using WorkTool.Models.DataModel;
 using WorkTool.Models;
 using Microsoft.AspNetCore.Http;
-
 namespace WorkTool.Controllers
 {
     public class HomeController : Controller
@@ -71,6 +70,7 @@ namespace WorkTool.Controllers
         {
             _unity.Upload(file);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

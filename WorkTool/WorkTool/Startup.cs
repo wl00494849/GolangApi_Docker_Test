@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using MySql.EntityFrameworkCore.DataAnnotations;
 
 namespace WorkTool
 {
@@ -77,6 +76,7 @@ namespace WorkTool
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            //設定文件路由
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
