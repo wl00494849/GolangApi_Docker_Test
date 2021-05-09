@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WorkTool.Models.Enum
 {
-    public class Response
+    public class ResponseCode
     {
         public enum ResultCode
         {
