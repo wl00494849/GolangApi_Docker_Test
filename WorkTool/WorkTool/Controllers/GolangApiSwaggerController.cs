@@ -47,5 +47,20 @@ namespace WorkTool.Controllers
 
             return result;
         }
+        [HttpPost("CallDeleteUser")]
+        public object CallDeleteUser(string url,int UserID)
+        {
+            BaseResultModel<object> result = new BaseResultModel<object>()
+            {
+                isSuccess = true,
+                response = ResponseCode.ResultCode.Success
+            };
+            Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().DeleteUser : url);
+            var str = new CallApi().CallGolangApi(uri,UserID);
+
+            result.body = str;
+
+            return result;
+        }
     }
 }

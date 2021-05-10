@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Text;
 
@@ -33,9 +34,11 @@ namespace WorkTool.Untity
 
             return jsonStr;
         }
-        public string CallGolangApi(Uri uri, string json)
+        public string CallGolangApi<T>(Uri uri, T obj)
         {
             var jsonStr = "";
+            var json = JsonConvert.SerializeObject(obj);
+            
             using (var client = new HttpClient())
             {
                 var content = new StringContent(json,Encoding.UTF8, "application/json");
