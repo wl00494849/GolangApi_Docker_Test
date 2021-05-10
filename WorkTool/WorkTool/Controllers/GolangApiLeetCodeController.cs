@@ -8,11 +8,27 @@ using Newtonsoft.Json;
 using WorkTool.Models.DataModel;
 using WorkTool.Models;
 using WorkTool.Models.Enum;
+using System;
 
-namespace WorkTool.Controllers 
+namespace WorkTool.Controllers
 {
     public class GolangApiLeetCodeController : Controller
     {
-        
+        [HttpPost("TwoSum")]
+        public object TwoSum(LeetCode.TwoSumModel twoSum,string url)
+        {
+            BaseResultModel<object> result = new BaseResultModel<object>()
+            {
+                isSuccess = true,
+                response = ResponseCode.ResultCode.Success
+            };
+
+            Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().GolangTwoSum : url);
+            var jsonStr = new CallApi().CallGolangApi(uri,JsonConvert.SerializeObject(twoSum));
+
+            result.body = JsonConvert.DeserializeObject<int[]>(jsonStr);
+
+            return result;
+        }
     }
 }

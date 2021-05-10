@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace WorkTool.Untity
 {
@@ -37,7 +38,7 @@ namespace WorkTool.Untity
             var jsonStr = "";
             using (var client = new HttpClient())
             {
-                var content = new StringContent(json);
+                var content = new StringContent(json,Encoding.UTF8, "application/json");
                 var response = client.PostAsync(uri,content);
                 if (response != null)
                 {
