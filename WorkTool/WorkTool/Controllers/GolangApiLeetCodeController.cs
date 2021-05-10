@@ -26,7 +26,7 @@ namespace WorkTool.Controllers
             Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().GolangTwoSum : url);
             var jsonStr = new CallApi().CallGolangApi(uri,JsonConvert.SerializeObject(twoSum));
 
-            result.body = JsonConvert.DeserializeObject<int[]>(jsonStr);
+            result.body = JsonConvert.DeserializeObject<LeetCode.TwoSumResult>(jsonStr);
 
             return result;
         }
