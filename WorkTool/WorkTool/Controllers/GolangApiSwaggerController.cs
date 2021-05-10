@@ -25,7 +25,7 @@ namespace WorkTool.Controllers
                 response = ResponseCode.ResultCode.Success
             };
             Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().DockerTest : url);
-            var str = new CallApi().CallGolangApi(uri,"");
+            var str = new CallApi().CallGolangApi(uri);
 
             result.body = str;
 
@@ -41,7 +41,7 @@ namespace WorkTool.Controllers
             };
 
             Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().UsersList : url);
-            var jsonStr = new CallApi().CallGolangApi(uri,"");
+            var jsonStr = new CallApi().CallGolangApi(uri);
 
             result.body = JsonConvert.DeserializeObject<List<User>>(jsonStr);
 
