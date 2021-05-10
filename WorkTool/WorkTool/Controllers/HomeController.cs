@@ -26,50 +26,20 @@ namespace WorkTool.Controllers
         [HttpPost("CreateWork")]
         public IActionResult CreateWork(Work work)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    _work.Create(work);
-                    return RedirectToAction("Work");
-                }
-                return View(work);
-            }
-            catch (System.Exception ex)
-            {
-                _logger.LogInformation(ex.ToString());
-                return RedirectToAction("Error");
-            }
+            _work.Create(work);
+            return RedirectToAction("Work");
         }
+        
         [HttpPost("DeleteWork")]
-        public void DeleteWork(string workID)
-        {
-            try
-            {
-                _work.Delete(workID);
-            }
-            catch (System.Exception ex)
-            {
-                _logger.LogInformation(ex.ToString());
-            }
-        }
+        public void DeleteWork(string workID) => _work.Delete(workID);
 
         [HttpPost("DetailWork")]
-        public Work DetailWork(string workID)
-        {
-            return _work.Detail(workID);
-        }
+        public Work DetailWork(string workID) => _work.Detail(workID);
 
         [HttpPost("WorkListJson")]
-        public JsonResult WorkListJson()
-        {
-            return Json(_work.GetList());
-        }
+        public JsonResult WorkListJson() => Json(_work.GetList());
         [HttpPost("Upload")]
-        public void Upload(IFormFile file)
-        {
-            _unity.Upload(file);
-        }
+        public void Upload(IFormFile file) => _unity.Upload(file);
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
