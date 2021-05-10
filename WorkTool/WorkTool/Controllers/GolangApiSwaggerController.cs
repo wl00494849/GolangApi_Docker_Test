@@ -17,29 +17,19 @@ namespace WorkTool.Controllers
     public class GolangApiSwaggerController : Controller
     {
         [HttpPost("CallDockerTestApi")]
-        public string CallDockerTestApi(string url)
+        public object CallDockerTestApi(string url)
         {
-            Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().DockerTest : url);
-            var str = "";
-            using (var client = new HttpClient())
+            BaseResultModel<object> result = new BaseResultModel<object>()
             {
-                var content = new StringContent("");
-                var response = client.GetAsync(uri);
-                if (response != null)
-                {
-                    Task task = response.Result.Content.ReadAsStreamAsync().ContinueWith(t =>
-                    {
-                        var stream = t.Result;
-                        using (var reader = new StreamReader(stream))
-                        {
-                            str = reader.ReadToEnd();
-                        }
-                    });
+                isSuccess = true,
+                response = ResponseCode.ResultCode.Success
+            };
+            Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().DockerTest : url);
+            var str = new CallApi().CallGolangApi(uri,"");
 
-                    task.Wait();
-                }
-            }
-            return str;
+            result.body = str;
+
+            return result;
         }
         [HttpPost("CallUsersList")]
         public object CallUsersList(string url)
@@ -51,25 +41,7 @@ namespace WorkTool.Controllers
             };
 
             Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().UsersList : url);
-            var jsonStr = "";
-            using (var client = new HttpClient())
-            {
-                var content = new StringContent("");
-                var response = client.GetAsync(uri);
-                if (response != null)
-                {
-                    Task task = response.Result.Content.ReadAsStreamAsync().ContinueWith(t =>
-                    {
-                        var stream = t.Result;
-                        using (var reader = new StreamReader(stream))
-                        {
-                            jsonStr = reader.ReadToEnd();
-                        }
-                    });
-
-                    task.Wait();
-                }
-            }
+            var jsonStr = new CallApi().CallGolangApi(uri,"");
 
             result.body = JsonConvert.DeserializeObject<List<User>>(jsonStr);
 
