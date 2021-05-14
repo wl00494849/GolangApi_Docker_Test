@@ -14,7 +14,7 @@ namespace WorkTool.Models
         public class TwoSumModel
         {
             public int[] Nums { get; set; }
-            public int Targer { get; set; }
+            public int Target { get; set; }
         }
     }
 }

@@ -12,5 +12,6 @@ namespace WorkTool.Untity
            public string DockerUsersList = "http://localhost:8787/UsersList";
            public string DeleteUser = "http://localhost:8778/DeleteUser";
            public string GolangTwoSum = "http://localhost:7788/TwoSum";
+           public string GolangChannlTest = "http://localhost:8778/ChannlTest";
     }
 }

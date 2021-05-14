@@ -62,5 +62,20 @@ namespace WorkTool.Controllers
 
             return result;
         }
+        [HttpPost("CallChannlTest")]
+        public object CallChannlTest(string url,GolangTest.ChannlTestModel model)
+        {
+            BaseResultModel<object> result = new BaseResultModel<object>()
+            {
+                isSuccess = true,
+                response = ResponseCode.ResultCode.Success
+            };
+            Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().GolangChannlTest : url);
+            var str = new CallApi().CallGolangApi(uri,model);
+
+            result.body = str;
+
+            return result;
+        }
     }
 }
