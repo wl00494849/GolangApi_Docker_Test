@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WorkTool.Models;
 using WorkTool.Models.DataModel;
-using WorkTool.Interface;
+using WorkTool.Models.Interface;
 
 namespace WorkTool.Services
 {

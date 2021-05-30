@@ -8,10 +8,10 @@ namespace WorkTool.Untity
     public class DockerUrl
     {
            public string DockerTest = "http://localhost:8787/DockerTest";
-           public string UsersList = "http://localhost:8778/UsersList";
+           public string UsersList = "http://localhost:8787/UsersList";
            public string DockerUsersList = "http://localhost:8787/UsersList";
-           public string DeleteUser = "http://localhost:8778/DeleteUser";
+           public string DeleteUser = "http://localhost:8787/DeleteUser";
            public string GolangTwoSum = "http://localhost:7788/TwoSum";
-           public string GolangChannlTest = "http://localhost:8778/ChannlTest";
+           public string GolangChannlTest = "http://localhost:8787/ChannlTest";
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
-namespace WorkTool.Interface
+namespace WorkTool.Models.Interface
 {
     public interface ISqlClient
     {

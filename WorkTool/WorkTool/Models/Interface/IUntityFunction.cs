@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace WorkTool.Interface
+namespace WorkTool.Models.Interface
 {
     public interface IUntityFunction
     {
