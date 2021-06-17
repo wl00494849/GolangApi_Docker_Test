@@ -15,5 +15,8 @@ namespace WorkTool.Models
         public string code => Convert.ToInt32(_response).ToString().PadLeft(3, '0');
         public Enum.ResponseCode.ResultCode response { set { _response = value; } get { return _response; } }
         public string exception { get; set; }
+        private string test { get; set; }
     }
+
+
 }

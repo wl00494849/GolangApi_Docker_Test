@@ -12,7 +12,7 @@ using WorkTool.Models.DataModel;
 using WorkTool.Models;
 using WorkTool.Models.Enum;
 
-namespace WorkTool.Controllers
+namespace WorkTool
 {
     public class GolangApiSwaggerController : Controller
     {
@@ -22,7 +22,8 @@ namespace WorkTool.Controllers
             BaseResultModel<object> result = new BaseResultModel<object>()
             {
                 isSuccess = true,
-                response = ResponseCode.ResultCode.Success
+                response = ResponseCode.ResultCode.Success,
+                
             };
             Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().DockerTest : url);
             var str = new CallApi().CallGolangApi(uri);
