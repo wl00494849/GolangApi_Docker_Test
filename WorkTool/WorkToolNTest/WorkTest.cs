@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSubstitute;
 using WorkTool.Models.DataModel;
 using WorkTool.Services;
-using WorkTool.Interface;
+using WorkTool.Models.Interface;
 using WorkTool.Models;
 using WorkToolNTest;
 using Microsoft.AspNetCore.Http;

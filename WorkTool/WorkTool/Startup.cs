@@ -42,17 +42,17 @@ namespace WorkTool
             //新增Swagger Doc文件
             services.AddSwaggerGen();
             
-            //MS-SQL Server
-            // services.AddDbContext<WorkToolEntity>
-            // (
-            //     options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
-            // );
-            
-            //MySQL Server
+            // MS-SQL Server
             services.AddDbContext<WorkToolEntity>
             (
-                options => options.UseMySQL(Configuration["ConnectionStrings:MySQL_WorkToolConnectionString"])
+                options => options.UseSqlServer(Configuration["ConnectionStrings:WorkToolConnectionString"])
             );
+            
+            //MySQL Server
+            // services.AddDbContext<WorkToolEntity>
+            // (
+            //     options => options.UseMySQL(Configuration["ConnectionStrings:MySQL_WorkToolConnectionString"])
+            // );
 
             //Singleton整個程序只建立一個
             services.AddSingleton<IUntityFunction, UntityFunction>();
