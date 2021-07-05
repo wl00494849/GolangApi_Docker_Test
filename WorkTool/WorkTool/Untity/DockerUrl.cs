@@ -11,7 +11,8 @@ namespace WorkTool.Untity
            public string UsersList = "http://localhost:8787/UsersList";
            public string DockerUsersList = "http://localhost:8787/UsersList";
            public string DeleteUser = "http://localhost:8787/DeleteUser";
-           public string GolangTwoSum = "http://localhost:7788/TwoSum";
+           public string GolangTwoSum = "http://localhost:7788/LeetCode/TwoSum";
+           public string GolangPalindrome = "http://localhost:7788/LeetCode/Palindrome";
            public string GolangChannlTest = "http://localhost:8787/ChannlTest";
            public string CQRS_UserDelete = "http://localhost:7777/UserCommand/UserDelete";
            public string CQRS_Create = "http://localhost:7777/UserCommand/UserCreate";

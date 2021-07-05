@@ -19,7 +19,7 @@ namespace WorkTool.Controllers
             BaseResultModel<object> result = new BaseResultModel<object>()
             {
                 isSuccess = true,
-                response = ResponseCode.ResultCode.Success
+                response = ResponseCode.ResultCode.Success,
             };
 
             Uri uri = new Uri(string.IsNullOrEmpty(url) ? new DockerUrl().CQRS_Create : url);
